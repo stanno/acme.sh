@@ -51,7 +51,7 @@ dns_katapult_add() {
 \"properties\":{\"name\":\"$_sub_domain\",\"type\":\"TXT\",\"ttl\":60,\
 \"content\":{\"TXT\":{\"content\":\"$txtvalue\"}}}}"
 
- if _katapult_rest POST "dns_zones/dns_zone/records" "$body"; then
+  if _katapult_rest POST "dns_zones/dns_zone/records" "$body"; then
     _info "validation value added"
     return 0
   else
@@ -152,7 +152,7 @@ _get_record() {
   _debug2 "Searching for $fullname record $content"
 
   if ! _katapult_rest GET "dns_zones/dns_zone/records?dns_zone[id]=$_domain_id"; then
-    return 1;
+    return 1
   fi
 
   if _contains "$response" "\"full_name\":\"$fullname\"" >/dev/null; then
